@@ -1998,7 +1998,7 @@ __webpack_require__.r(__webpack_exports__);
 
       setTimeout(function (res) {
         return _this3.message.status = false;
-      }, 10000);
+      }, 9000);
     },
     showMessage: function showMessage(content, success, danger, status) {
       this.message.content = content;

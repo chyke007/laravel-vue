@@ -231,7 +231,7 @@ export default {
       }
     },
     hideAlert() {
-      setTimeout(res => (this.message.status = false), 10000);
+      setTimeout(res => (this.message.status = false), 9000);
     },
     showMessage(content, success, danger, status) {
       this.message.content = content;
