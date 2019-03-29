@@ -3,13 +3,13 @@
 Laravel 5.5 API that uses the API resources with a Vue.js frontend
 
 ## Getting Started
-. Clone or download this repo
-. Run composer install
-. Edit .env to you database credentials
-. Run migration
-. Run seed
-. Run compile for JS
-. Serve the application
+Clone or download this repo
+Run composer install
+Edit .env to you database credentials
+Run migration
+Run seed
+Run compile for JS
+Serve the application
 
 ### Prerequisites
 
@@ -44,32 +44,32 @@ npm run watch
 
 ## Endpoints
 ### List all articles with links and meta
-``
+```
 GET api/articles
 
-``
+```
 ### Get single article
-``
+```
 GET api/article/{id}
 
-``
+```
 ### Delete article
-``
+```
 DELETE api/article/{id}
 
-``
+```
 ### Add article
-``
+```
 POST api/article
 title/body
 
-``
+```
 ### Update article
-``
+```
 PUT api/article
 article_id/title/body
 
-``
+```
 ## Built With
 
 * [Laravel](https://laravel.com/) - The web framework used
@@ -80,7 +80,7 @@ article_id/title/body
 
 ## Versioning
 
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
+We use [SemVer](http://semver.org/) for versioning. Current version is 1.0.0
 
 ## Authors
 
