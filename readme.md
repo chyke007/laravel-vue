@@ -3,13 +3,13 @@
 Laravel 5.5 API that uses the API resources with a Vue.js frontend
 
 ## Getting Started
-Clone or download this repo
-Run composer install
-Edit .env to you database credentials
-Run migration
-Run seed
-Run compile for JS
-Serve the application
+* Clone or download this repo
+* Run composer install
+* Edit .env to you database credentials
+* Run migration
+* Run seed
+* Run compile for JS
+* Serve the application
 
 ### Prerequisites
 
