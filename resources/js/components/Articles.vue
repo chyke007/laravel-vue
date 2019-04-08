@@ -228,7 +228,7 @@ export default {
       }
     },
     hideAlert() {
-      setTimeout(res => (this.message.status = false), 7000);
+      setTimeout(res => (this.message.status = false), 9000);
     },
     showMessage(content, success, danger, status) {
       this.message.content = content;
@@ -239,7 +239,6 @@ export default {
     performCheck() {
       if (this.article.title == "" || this.article.body == "") {
         this.showMessage("All fields are required.", false, true, true);
-
         return false;
       } else {
         return true;
@@ -247,7 +246,6 @@ export default {
     },
     addArticle() {
       if (!this.performCheck()) {
-        this.hideAlert();
         return;
       }
       this.loading = true;
@@ -292,6 +290,7 @@ export default {
             this.article.title = "";
             this.article.body = "";
             this.showMessage("Article has been updated.", true, false, true);
+
             this.fetchArticles();
           })
           .catch(err => {

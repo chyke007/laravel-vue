@@ -1998,7 +1998,7 @@ __webpack_require__.r(__webpack_exports__);
 
       setTimeout(function (res) {
         return _this3.message.status = false;
-      }, 7000);
+      }, 9000);
     },
     showMessage: function showMessage(content, success, danger, status) {
       this.message.content = content;
@@ -2018,7 +2018,6 @@ __webpack_require__.r(__webpack_exports__);
       var _this4 = this;
 
       if (!this.performCheck()) {
-        this.hideAlert();
         return;
       }
 
