@@ -183,10 +183,12 @@ export default {
         })
         .catch(err => {
           console.log(err);
-          this.message.status = true;
-          this.message.content = "An error occured, please try again later.";
-          this.message.danger = true;
-          this.message.success = false;
+          this.showMessage(
+            "An error occured, please try again later.",
+            false,
+            true,
+            true
+          );
           this.loading = false;
           this.hideAlert();
         });
@@ -198,7 +200,6 @@ export default {
         next_page_url: links.next,
         prev_page_url: links.prev
       };
-
       this.pagination = pagination;
     },
     deleteArticle(id) {
@@ -209,29 +210,46 @@ export default {
         })
           .then(res => res.json)
           .then(data => {
-            this.message.status = true;
-            this.message.success = true;
-            this.message.danger = false;
-
             this.message.content = "Article has been removed";
-
+            this.showMessage("Article has been removed.", true, false, true);
             this.fetchArticles();
           })
           .catch(err => {
             console.log(err);
-            this.message.status = true;
-            this.message.content = "An error occured, please try again later.";
-            this.message.danger = true;
-            this.message.success = false;
+            this.showMessage(
+              "An error occured, please try again later.",
+              false,
+              true,
+              true
+            );
             this.loading = false;
             this.hideAlert();
           });
       }
     },
     hideAlert() {
-      setTimeout(res => (this.message.status = false), 10000);
+      setTimeout(res => (this.message.status = false), 7000);
+    },
+    showMessage(content, success, danger, status) {
+      this.message.content = content;
+      this.message.success = success;
+      this.message.danger = danger;
+      this.message.status = status;
+    },
+    performCheck() {
+      if (this.article.title == "" || this.article.body == "") {
+        this.showMessage("All fields are required.", false, true, true);
+
+        return false;
+      } else {
+        return true;
+      }
     },
     addArticle() {
+      if (!this.performCheck()) {
+        this.hideAlert();
+        return;
+      }
       this.loading = true;
       if (this.edit === false) {
         //Add
@@ -246,19 +264,17 @@ export default {
           .then(data => {
             this.article.title = "";
             this.article.body = "";
-            this.message.content = "Article has been added";
-            this.message.success = true;
-            this.message.danger = false;
-            this.message.status = true;
-
+            this.showMessage("Article has been added.", true, false, true);
             this.fetchArticles();
           })
           .catch(err => {
             console.log(err);
-            this.message.status = true;
-            this.message.content = "An error occured, please try again later.";
-            this.message.danger = true;
-            this.message.success = false;
+            this.showMessage(
+              "An error occured, please try again later.",
+              false,
+              true,
+              true
+            );
             this.loading = false;
             this.hideAlert();
           });
@@ -275,19 +291,17 @@ export default {
           .then(data => {
             this.article.title = "";
             this.article.body = "";
-            this.message.content = "Article has been updated";
-            this.message.success = true;
-            this.message.danger = false;
-            this.message.status = true;
-
+            this.showMessage("Article has been updated.", true, false, true);
             this.fetchArticles();
           })
           .catch(err => {
             console.log(err);
-            this.message.status = true;
-            this.message.content = "An error occured, please try again later.";
-            this.message.danger = true;
-            this.message.success = false;
+            this.showMessage(
+              "An error occured, please try again later.",
+              false,
+              true,
+              true
+            );
             this.loading = false;
             this.hideAlert();
           });
@@ -295,13 +309,11 @@ export default {
     },
     editArticle(article) {
       this.edit = true;
-
       this.article.article_id = article.id;
       this.article.title = article.title;
       this.article.body = article.body;
     }
   },
-
   mounted() {}
 };
 </script>

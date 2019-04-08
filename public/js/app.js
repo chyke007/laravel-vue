@@ -1950,10 +1950,9 @@ __webpack_require__.r(__webpack_exports__);
         vm.makePagination(res.meta, res.links);
       }).catch(function (err) {
         console.log(err);
-        _this.message.status = true;
-        _this.message.content = "An error occured, please try again later.";
-        _this.message.danger = true;
-        _this.message.success = false;
+
+        _this.showMessage("An error occured, please try again later.", false, true, true);
+
         _this.loading = false;
 
         _this.hideAlert();
@@ -1978,18 +1977,16 @@ __webpack_require__.r(__webpack_exports__);
         }).then(function (res) {
           return res.json;
         }).then(function (data) {
-          _this2.message.status = true;
-          _this2.message.success = true;
-          _this2.message.danger = false;
           _this2.message.content = "Article has been removed";
+
+          _this2.showMessage("Article has been removed.", true, false, true);
 
           _this2.fetchArticles();
         }).catch(function (err) {
           console.log(err);
-          _this2.message.status = true;
-          _this2.message.content = "An error occured, please try again later.";
-          _this2.message.danger = true;
-          _this2.message.success = false;
+
+          _this2.showMessage("An error occured, please try again later.", false, true, true);
+
           _this2.loading = false;
 
           _this2.hideAlert();
@@ -2001,10 +1998,29 @@ __webpack_require__.r(__webpack_exports__);
 
       setTimeout(function (res) {
         return _this3.message.status = false;
-      }, 10000);
+      }, 7000);
+    },
+    showMessage: function showMessage(content, success, danger, status) {
+      this.message.content = content;
+      this.message.success = success;
+      this.message.danger = danger;
+      this.message.status = status;
+    },
+    performCheck: function performCheck() {
+      if (this.article.title == "" || this.article.body == "") {
+        this.showMessage("All fields are required.", false, true, true);
+        return false;
+      } else {
+        return true;
+      }
     },
     addArticle: function addArticle() {
       var _this4 = this;
+
+      if (!this.performCheck()) {
+        this.hideAlert();
+        return;
+      }
 
       this.loading = true;
 
@@ -2021,18 +2037,15 @@ __webpack_require__.r(__webpack_exports__);
         }).then(function (data) {
           _this4.article.title = "";
           _this4.article.body = "";
-          _this4.message.content = "Article has been added";
-          _this4.message.success = true;
-          _this4.message.danger = false;
-          _this4.message.status = true;
+
+          _this4.showMessage("Article has been added.", true, false, true);
 
           _this4.fetchArticles();
         }).catch(function (err) {
           console.log(err);
-          _this4.message.status = true;
-          _this4.message.content = "An error occured, please try again later.";
-          _this4.message.danger = true;
-          _this4.message.success = false;
+
+          _this4.showMessage("An error occured, please try again later.", false, true, true);
+
           _this4.loading = false;
 
           _this4.hideAlert();
@@ -2050,18 +2063,15 @@ __webpack_require__.r(__webpack_exports__);
         }).then(function (data) {
           _this4.article.title = "";
           _this4.article.body = "";
-          _this4.message.content = "Article has been updated";
-          _this4.message.success = true;
-          _this4.message.danger = false;
-          _this4.message.status = true;
+
+          _this4.showMessage("Article has been updated.", true, false, true);
 
           _this4.fetchArticles();
         }).catch(function (err) {
           console.log(err);
-          _this4.message.status = true;
-          _this4.message.content = "An error occured, please try again later.";
-          _this4.message.danger = true;
-          _this4.message.success = false;
+
+          _this4.showMessage("An error occured, please try again later.", false, true, true);
+
           _this4.loading = false;
 
           _this4.hideAlert();
